@@ -19,5 +19,10 @@ declare -r SELF="$(realpath "$0")"
   fi
   ${cmd[@]} | while read file; do
     cp "${file}" "${TARGET}"
+    if [ "${file}" == "./.gitignore" ]; then
+      for link in .eslintignore .hgignore .prettierignore; do
+        ln -s "${file}" "${TARGET}/${link}"
+      done
+    fi
   done
 )
