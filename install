@@ -1,0 +1,22 @@
+#!/bin/bash
+
+declare -r SELF="$(realpath "$0")"
+(
+  cd "$(dirname "$SELF")"
+  declare cmd=(
+    find . \
+        -maxdepth 1 \
+        -not -type d \
+        -not \( -name "$(basename "$SELF")" -or -name "package.json" -or -name "README.md" \) \
+  )
+  if [ $# -ne 0 ]; then
+    cmd+=( \( -false )
+    for name in "$@"; do
+      cmd+=(-or -name "*${name}*")
+    done
+    cmd+=( \) )
+  fi
+  ${cmd[@]}
+) | while read file; do
+  cp "${file}" .
+done

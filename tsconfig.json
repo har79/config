@@ -1,0 +1,41 @@
+{
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "compilerOptions": {
+    "declaration": true,
+    "downlevelIteration": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["dom"],
+    "module": "esnext",
+    "noEmit": true,
+    "outDir": "build",
+    "rootDir": ".",
+    "sourceMap": true,
+    "target": "esnext",
+
+    "strict": true,
+
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "react": ["node_modules/preact/compat"],
+      "react-dom": ["node_modules/preact/compat"]
+    },
+
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "forceConsistentCasingInFileNames": true,
+    "jsxFactory": "h",
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true
+  }
+}
