@@ -18,11 +18,13 @@ declare -r SELF="$(realpath "$0")"
     cmd+=( \) )
   fi
   ${cmd[@]} | while read file; do
-    cp "${file}" "${TARGET}"
-    if [ "${file}" == "./.gitignore" ]; then
+    if [ "${file}" == "./.npmignore" ]; then
+      cp "${file}" "${TARGET}/.gitignore"
       for link in .eslintignore .hgignore .prettierignore; do
-        ln -s "${file}" "${TARGET}/${link}"
+        ln -s ".gitignore" "${TARGET}/${link}"
       done
+    else
+      cp "${file}" "${TARGET}"
     fi
   done
 )
