@@ -1,5 +1,6 @@
 #!/bin/bash
 
+declare -r TARGET="$PWD"
 declare -r SELF="$(realpath "$0")"
 (
   cd "$(dirname "$SELF")"
@@ -16,7 +17,7 @@ declare -r SELF="$(realpath "$0")"
     done
     cmd+=( \) )
   fi
-  ${cmd[@]}
-) | while read file; do
-  cp "${file}" .
-done
+  ${cmd[@]} | while read file; do
+    cp "${file}" "${TARGET}"
+  done
+)
