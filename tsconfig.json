@@ -9,9 +9,8 @@
     "jsx": "react",
     "lib": ["dom"],
     "module": "esnext",
-    "noEmit": true,
-    "outDir": "build",
-    "rootDir": ".",
+    "outDir": "lib",
+    "rootDir": "src",
     "sourceMap": true,
     "target": "esnext",
 
