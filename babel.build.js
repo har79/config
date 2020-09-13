@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-const config = require('./common.config')
+const common = require('./common.config')
 
 require('child_process').execSync(
   [
     'npx babel',
-    `${config.root}`,
-    `--out-dir ${config.out}`,
-    `--extensions "${config.extensions.join(',')}"`,
+    `${common.root}`,
+    `--out-dir ${common.out}`,
+    `--extensions "${common.extensions.join(',')}"`,
     '--source-maps inline',
   ].join(' '),
   {stdio: 'inherit'}
