@@ -1,11 +1,18 @@
+const common = require('./common.config')
+
 module.exports = {
   env: {
     browser: true,
     es6: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'preact', 'google', 'prettier'],
-  plugins: ['react', '@typescript-eslint'],
+  extends: [
+    'eslint:recommended',
+    ...(common.withPreact ? ['preact'] : []),
+    'google',
+    'prettier',
+  ],
+  plugins: [...(common.withPreact ? ['react'] : []), '@typescript-eslint'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -28,9 +35,7 @@ module.exports = {
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
+        ...(withPreact ? {ecmaFeatures: {jsx: true}} : {}),
         ecmaVersion: 2018,
         project: './tsconfig.json',
         sourceType: 'module',
