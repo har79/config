@@ -35,7 +35,7 @@ module.exports = {
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        ...(withPreact ? {ecmaFeatures: {jsx: true}} : {}),
+        ecmaFeatures: {jsx: common.withPreact},
         ecmaVersion: 2018,
         project: './tsconfig.json',
         sourceType: 'module',
