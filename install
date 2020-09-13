@@ -1,30 +1,92 @@
 #!/bin/bash
+set -eu
 
-declare -r TARGET="$PWD"
+function print_usage() {
+  echo "Usage: npx har79-config [-h|-n] [PATTERN].." >&2
+}
+
+function print_help() {
+  print_usage
+  cat >&2 <<END
+
+  -d    Debug; prints all subcommands.
+  -h    Print this help.
+  -n    Dry run; list changes and exit.
+END
+}
+
+while getopts ":dhn" o; do
+  case "${o}" in
+    d)
+      set -x
+      ;;
+    h)
+      print_help
+      exit 1
+      ;;
+    n)
+      declare -r DRY_RUN=true
+      ;;
+    *)
+      print_usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND-1))
+
+function run() {
+  ${DRY_RUN:+echo} $@
+}
+
 declare -r SELF="$(realpath "$0")"
-(
-  cd "$(dirname "$SELF")"
-  declare cmd=(
-    find . \
-        -maxdepth 1 \
-        -not -type d \
-        -not \( -name "$(basename "$SELF")" -or -name "package.json" -or -name "LICENSE" -or -name "README.md" \) \
-  )
-  if [ $# -ne 0 ]; then
-    cmd+=( \( -false )
-    for name in "$@"; do
-      cmd+=(-or -name "*${name}*")
-    done
-    cmd+=( \) )
+declare -r DIR="$(dirname "${SELF}")"
+
+declare -r PATTERNS=( "${@:-"*"}" )
+declare -r EXCLUDE=(
+  "$(basename "$SELF")"
+  "ignore"
+  "package.json"
+  "LICENSE"
+  "README.md"
+)
+
+declare cmd=()
+
+function add_names() {
+  cmd+=( \( -false )
+  for name in "$@"; do
+    cmd+=(-or -name "*${name}*")
+  done
+  cmd+=( \) )
+}
+
+cmd+=(
+  find "${DIR}"
+      -maxdepth 1
+      -not -type d
+      -not ) 
+
+add_names "${EXCLUDE[@]}"
+
+add_names "${PATTERNS[@]}"
+
+"${cmd[@]}" | while read file; do
+  run cp "${file}" .
+done
+
+for pattern in "${PATTERNS[@]}"; do
+  if [[ ".gitignore" == ${pattern} ]]; then
+    run cp ${DIR}/.npmignore .gitignore
+    break
   fi
-  ${cmd[@]} | while read file; do
-    if [ "${file}" == "./.npmignore" ]; then
-      cp "${file}" "${TARGET}/.gitignore"
-      for link in .eslintignore .hgignore .prettierignore; do
-        ln -s ".gitignore" "${TARGET}/${link}"
-      done
-    else
-      cp "${file}" "${TARGET}"
+done
+
+for ignore in .eslintignore .hgignore .prettierignore; do
+  for pattern in "${PATTERNS[@]}"; do
+    if [[ "${ignore}" == ${pattern} ]]; then
+      run ln -sf .gitignore "${ignore}"
+      break
     fi
   done
-)
+done
