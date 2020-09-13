@@ -8,7 +8,7 @@ declare -r SELF="$(realpath "$0")"
     find . \
         -maxdepth 1 \
         -not -type d \
-        -not \( -name "$(basename "$SELF")" -or -name "package.json" -or -name "README.md" \) \
+        -not \( -name "$(basename "$SELF")" -or -name "package.json" -or -name "LICENSE" -or -name "README.md" \) \
   )
   if [ $# -ne 0 ]; then
     cmd+=( \( -false )
