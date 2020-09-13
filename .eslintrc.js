@@ -2,12 +2,21 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    node: true,
   },
   extends: ['eslint:recommended', 'preact', 'google', 'prettier'],
   plugins: ['react', '@typescript-eslint'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
+  },
+  rules: {
+    curly: ['error', 'multi-line'],
+    eqeqeq: ['error', 'always'],
+    'no-constant-condition': ['error', {checkLoops: false}],
+    'no-invalid-this': 'off',
+    'require-jsdoc': 'off',
+    'valid-jsdoc': 'off',
   },
   overrides: [
     {
@@ -26,14 +35,6 @@ module.exports = {
         project: './tsconfig.json',
         sourceType: 'module',
         tsconfigRootDir: __dirname,
-      },
-      rules: {
-        curly: ['error', 'multi-line'],
-        eqeqeq: ['error', 'always'],
-        'no-constant-condition': ['error', {checkLoops: false}],
-        'no-invalid-this': 'off',
-        'require-jsdoc': 'off',
-        'valid-jsdoc': 'off',
       },
     },
   ],
