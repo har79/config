@@ -8,7 +8,7 @@ require('child_process').execSync(
     `${common.src}`,
     `--out-dir ${common.out}`,
     `--extensions "${common.extensions.join(',')}"`,
-    '--source-maps inline',
+    '--source-maps true',
   ].join(' '),
   {stdio: 'inherit'}
 )
