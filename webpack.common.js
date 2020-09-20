@@ -4,7 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const common = require('./common.config')
 
 module.exports = {
-  entry: './src/bootstrap.tsx',
+  context: path.resolve(__dirname, 'src'),
+  entry: 'bootstrap.tsx',
+  mode: 'none',
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
@@ -23,7 +25,9 @@ module.exports = {
     ],
   },
   resolve: {
-    alias: common.alias,
+    alias: Object.fromEntries(
+      Object.entries(common.alias).map(([k, v]) => [k, v[0]])
+    ),
     extensions: common.extensions,
     modules: common.modules,
   },
