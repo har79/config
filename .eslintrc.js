@@ -17,6 +17,9 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parserOptions: {
+    sourceType: 'module',
+  },
   rules: {
     curly: ['error', 'multi-line'],
     eqeqeq: ['error', 'always'],
