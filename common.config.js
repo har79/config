@@ -1,4 +1,5 @@
 const ts = require('./tsconfig.json')
+const build = require('./tsconfig.build.json')
 
 module.exports = {
   withPreact: true,
@@ -7,5 +8,5 @@ module.exports = {
   extensions: ['.ts', ...(this.withPreact ? ['.tsx'] : []), '.js'],
   modules: [ts.compilerOptions.baseUrl, 'node_modules'],
   out: ts.compilerOptions.outDir,
-  root: ts.compilerOptions.rootDir,
+  src: build.compilerOptions.rootDir,
 }
