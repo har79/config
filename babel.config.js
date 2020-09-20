@@ -2,7 +2,7 @@ const common = require('./common.config')
 
 module.exports = {
   presets: [
-    ['@babel/env', {modules: false}],
+    ['@babel/env', {modules: 'auto'}],
     ['@babel/typescript', {jsxPragma: 'h'}],
     ...(common.withPreact ? ['@babel/react'] : []),
   ],
@@ -21,9 +21,4 @@ module.exports = {
       },
     ],
   ],
-  env: {
-    test: {
-      plugins: ['@babel/transform-modules-commonjs'],
-    },
-  },
 }
