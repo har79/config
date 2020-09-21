@@ -52,58 +52,62 @@ function link() {
   run ln -s ${FORCE:-} "${1#"${PWD}/"}" "$2"
 }
 
-declare -r SELF="$(realpath "$0")"
-declare -r DIR="$(dirname "${SELF}")"
+function main() {
+  declare -r self="$(realpath "$0")"
+  declare -r dir="$(dirname "${self}")"
 
-declare -r PATTERNS=( "${@:-"*"}" )
-declare -r EXCLUDE=(
-  "$(basename "$SELF")"
-  "ignore"
-  "package.json"
-  "LICENSE"
-  "README.md"
-)
+  declare -r patterns=( "${@:-"*"}" )
+  declare -r exclude=(
+    "$(basename "${self}")"
+    "ignore"
+    "package.json"
+    "LICENSE"
+    "README.md"
+  )
 
-declare cmd=()
+  declare cmd=()
 
-function add_names() {
-  cmd+=( \( -false )
-  for name in "$@"; do
-    cmd+=(-or -name "*${name}*")
+  function add_names() {
+    cmd+=( \( -false )
+    for name in "$@"; do
+      cmd+=(-or -name "*${name}*")
+    done
+    cmd+=( \) )
+  }
+
+  cmd+=(
+    find "${dir}"
+        -maxdepth 1
+        -not -type d
+        -not ) 
+
+  add_names "${exclude[@]}"
+
+  add_names "${patterns[@]}"
+
+  "${cmd[@]}" | while read file; do
+    if [[ "${file}" == *options.config.js ]]; then
+      copy ${file} .
+      continue
+    fi
+    link "${file}" .
   done
-  cmd+=( \) )
-}
 
-cmd+=(
-  find "${DIR}"
-      -maxdepth 1
-      -not -type d
-      -not ) 
-
-add_names "${EXCLUDE[@]}"
-
-add_names "${PATTERNS[@]}"
-
-"${cmd[@]}" | while read file; do
-  if [[ "${file}" == *options.config.js ]]; then
-    copy ${file} .
-    continue
-  fi
-  link "${file}" .
-done
-
-for pattern in "${PATTERNS[@]}"; do
-  if [[ ".gitignore" == ${pattern} ]]; then
-    link "${DIR}/.npmignore" .gitignore
-    break
-  fi
-done
-
-for ignore in .eslintignore .hgignore .prettierignore; do
-  for pattern in "${PATTERNS[@]}"; do
-    if [[ "${ignore}" == ${pattern} ]]; then
-      link .gitignore "${ignore}"
+  for pattern in "${patterns[@]}"; do
+    if [[ ".gitignore" == ${pattern} ]]; then
+      link "${dir}/.npmignore" .gitignore
       break
     fi
   done
-done
+
+  for ignore in .eslintignore .hgignore .prettierignore; do
+    for pattern in "${patterns[@]}"; do
+      if [[ "${ignore}" == ${pattern} ]]; then
+        link .gitignore "${ignore}"
+        break
+      fi
+    done
+  done
+}
+
+main "$@" | sort
