@@ -41,7 +41,7 @@ done
 shift $((OPTIND-1))
 
 function run() {
-  ${DRY_RUN:+echo} $@
+  ${DRY_RUN:+echo} $@ || :
 }
 
 function copy() {
