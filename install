@@ -89,6 +89,8 @@ function main() {
     if [[ "${file}" == *options.config.js ]]; then
       copy ${file} .
       continue
+    elif [[ "${file}" == *common.config.js ]]; then
+      continue
     fi
     link "${file}" .
   done
