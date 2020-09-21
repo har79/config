@@ -2,23 +2,28 @@
 set -eu
 
 function print_usage() {
-  echo "Usage: npx har79-config [-h|-n] [PATTERN].." >&2
+  echo "Usage: npx har79-config [OPT].. [PATTERN].." >&2
 }
 
 function print_help() {
   print_usage
   cat >&2 <<END
 
+OPT
   -d    Debug; prints all subcommands.
+  -f    Force; replace all links.
   -h    Print this help.
   -n    Dry run; list changes and exit.
 END
 }
 
-while getopts ":dhn" o; do
+while getopts ":dfhn" o; do
   case "${o}" in
     d)
       set -x
+      ;;
+    f)
+      declare -r FORCE="-f"
       ;;
     h)
       print_help
@@ -37,6 +42,14 @@ shift $((OPTIND-1))
 
 function run() {
   ${DRY_RUN:+echo} $@
+}
+
+function copy() {
+  run cp ${FORCE:--n} "${1#"${PWD}/"}" "$2"
+}
+
+function link() {
+  run ln -s ${FORCE:-} "${1#"${PWD}/"}" "$2"
 }
 
 declare -r SELF="$(realpath "$0")"
@@ -72,12 +85,16 @@ add_names "${EXCLUDE[@]}"
 add_names "${PATTERNS[@]}"
 
 "${cmd[@]}" | while read file; do
-  run cp "${file}" .
+  if [[ "${file}" == *options.config.js ]]; then
+    copy ${file} .
+    continue
+  fi
+  link "${file}" .
 done
 
 for pattern in "${PATTERNS[@]}"; do
   if [[ ".gitignore" == ${pattern} ]]; then
-    run cp ${DIR}/.npmignore .gitignore
+    link "${DIR}/.npmignore" .gitignore
     break
   fi
 done
@@ -85,7 +102,7 @@ done
 for ignore in .eslintignore .hgignore .prettierignore; do
   for pattern in "${PATTERNS[@]}"; do
     if [[ "${ignore}" == ${pattern} ]]; then
-      run ln -sf .gitignore "${ignore}"
+      link .gitignore "${ignore}"
       break
     fi
   done
