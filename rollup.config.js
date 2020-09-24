@@ -1,16 +1,16 @@
 const common = require('./common.config')
 
-import autoExternal from 'rollup-plugin-auto-external'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 
 module.exports = {
   input: 'src/index.ts',
-  external: id => id.includes('@babel/runtime'),
   plugins: [
-    autoExternal(),
-    resolve({extensions: common.extensions}),
+    resolve({
+      only: [/^\.{0,2}\//],
+      extensions: common.extensions,
+    }),
     babel({
       include: ['src/**/*'],
       extensions: common.extensions,
