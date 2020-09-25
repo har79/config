@@ -61,6 +61,7 @@ function main() {
     "$(basename "${self}")"
     "ignore"
     "package.json"
+    "src"
     "LICENSE"
     "README.md"
   )
