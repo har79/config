@@ -2,7 +2,6 @@
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "composite": true,
     "downlevelIteration": true,
     "importHelpers": true,
     "isolatedModules": true,
@@ -13,7 +12,6 @@
     "outDir": "lib",
     "sourceMap": true,
     "target": "esnext",
-    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
 
     "strict": true,
 
