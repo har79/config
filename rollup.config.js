@@ -27,7 +27,7 @@ module.exports = {
     },
     {
       dir: 'lib',
-      entryFileNames: '[name].mjs',
+      entryFileNames: '[name].es.js',
       format: 'es',
       preserveModules: true,
       sourcemap: true,
