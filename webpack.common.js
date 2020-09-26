@@ -4,12 +4,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const common = require('./common.config')
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
+  context: path.resolve(process.cwd(), 'src'),
   entry: 'bootstrap.tsx',
   mode: 'none',
   output: {
     filename: 'app.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(process.cwd(), 'dist'),
   },
   module: {
     rules: [
@@ -34,7 +34,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'mallet',
-      template: 'src/index.html',
+      template: 'index.html',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
