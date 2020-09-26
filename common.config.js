@@ -6,7 +6,7 @@ module.exports = {
   withPreact: options.withPreact,
 
   alias: ts.compilerOptions.paths,
-  extensions: ['.ts', ...(this.withPreact ? ['.tsx'] : []), '.js'],
+  extensions: ['.ts', ...(options.withPreact ? ['.tsx'] : []), '.js'],
   modules: [ts.compilerOptions.baseUrl, 'node_modules'],
   out: ts.compilerOptions.outDir,
   src: build.compilerOptions.rootDir,
