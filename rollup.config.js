@@ -8,7 +8,7 @@ module.exports = {
   input: 'src/index.ts',
   plugins: [
     resolve({
-      only: [/^\.{0,2}\//],
+      resolveOnly: [/^\.{0,2}\//],
       extensions: common.extensions,
     }),
     babel({
