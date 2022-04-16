@@ -5,7 +5,7 @@ const common = require('./common.config')
 
 module.exports = {
   context: path.resolve(process.cwd(), 'src'),
-  entry: 'bootstrap.tsx',
+  entry: common.withPreact ? 'bootstrap.tsx' : 'index.ts',
   mode: 'none',
   output: {
     filename: 'app.js',
