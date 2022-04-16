@@ -1,6 +1,7 @@
 module.exports = {
   arrowParens: 'avoid',
   bracketSpacing: false,
+  "plugins": ["prettier-plugin-jsdoc"],
   proseWrap: 'always',
   semi: false,
   singleQuote: true,
