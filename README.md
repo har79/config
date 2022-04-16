@@ -50,3 +50,47 @@ Update your `package.json` to contain the following:
     "start": "webpack-dev-server --config webpack.dev.js"
   },
 ```
+
+## Dependencies
+
+```
+packages=(
+@babel/plugin-proposal-class-properties
+@babel/plugin-proposal-object-rest-spread
+@babel/plugin-transform-runtime
+@babel/preset-env
+@babel/preset-typescript
+@typescript-eslint/eslint-plugin
+babel-loader
+babel-plugin-module-resolver
+css-minimizer-webpack-plugin
+eslint-config-google
+eslint-config-prettier
+eslint
+har79-config
+html-webpack-plugin
+jest
+license-checker
+mini-css-extract-plugin
+oss-attribution-generator
+prettier-plugin-jsdoc
+prettier
+typescript
+webpack-cli
+webpack-dev-server
+webpack
+)
+for p in "${packages[@]}"; do npm i -D "$p"; done
+```
+
+### `withPreact`
+
+```
+packages=(
+@babel/plugin-transform-react-jsx
+@babel/preset-react
+eslint-config-preact
+preact
+)
+for p in "${packages[@]}"; do npm i -D "$p"; done
+```
