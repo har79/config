@@ -1,6 +1,11 @@
 #!/bin/bash
 set -eu
 
+  declare -r self="$(realpath "$0")"
+  declare -r root="$(dirname "${self}")/"
+  declare -r relative="${root#"${PWD}/"}"
+
+
 function print_usage() {
   echo "Usage: npx har79-config [OPT].. [PATTERN].." >&2
 }
@@ -44,26 +49,31 @@ function run() {
   ${DRY_RUN:+echo} $@ || :
 }
 
+function mkdir() {
+  declare -r dir="$(dirname $1)"
+  [[ -d "${dir}" ]] || run mkdir -p "${dir}"
+}
+
 function copy() {
-  run cp ${FORCE:--n} "$1" "$2"
+  mkdir "$1"
+  run cp ${FORCE:--n} "${relative}$1" "${2:-$(dirname "$1")}"
 }
 
 function link() {
-  run ln -s ${FORCE:-} "$1" "$2"
+  mkdir "$1"
+  run ln -s ${FORCE:-} "${relative}$1" "${2:-$(dirname "$1")}"
+
 }
 
 function main() {
-  declare -r self="$(realpath "$0")"
-  declare -r dir="$(dirname "${self}")/"
-
   declare -r patterns=("${@:-"*"}")
   declare exclude=(
     "$(basename "${self}")"
     ".docker/*"
     ".git/*"
+    "lib/*"
     "node_modules/*"
     "src/*"
-    ".gitignore"
     "common.config.js"
     "ignore"
     "package.json"
@@ -73,6 +83,7 @@ function main() {
   )
   declare -r ignores=(
     ".eslintignore"
+    ".gitignore"
     ".hgignore"
     ".prettierignore"
   )
@@ -97,38 +108,26 @@ function main() {
 
   add_names "${patterns[@]}"
 
-  declare prefix="${dir#"${PWD}/"}"
-  prefix="${prefix:-.}"
-  cd "${dir}"
-
-  # echo "${cmd[@]}"
-  "${cmd[@]}" | while read f; do
-    declare file="${prefix}${f#.}"
+  ( cd "${root}"; "${cmd[@]}" ) | LC_ALL=C sort | while read file; do
+    file="${file#./}"
     case $file in
-      *options.config.js)
-        copy "${file}" .
+      options.config.js)
+        copy "${file}"
         ;;
       *)
-        link "${file}" .
+        link "${file}"
         ;;
     esac
-  done
-
-  for pattern in "${patterns[@]}"; do
-    if [[ ".gitignore" == ${pattern} ]]; then
-      link "${prefix}/.npmignore" .gitignore
-      break
-    fi
   done
 
   for ignore in "${ignores[@]}"; do
     for pattern in "${patterns[@]}"; do
       if [[ "${ignore}" == ${pattern} ]]; then
-        link .gitignore "${ignore}"
+        link ".npmignore" "${ignore}"
         break
       fi
     done
   done
 }
 
-main "$@" | sort
+main "$@"
