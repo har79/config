@@ -40,7 +40,7 @@ module.exports = {
       parserOptions: {
         ecmaFeatures: {jsx: common.withPreact},
         ecmaVersion: 2018,
-        project: '../../tsconfig.json',
+        project: `${common.configPath}/tsconfig.json`,
         sourceType: 'module',
         tsconfigRootDir: __dirname,
       },
