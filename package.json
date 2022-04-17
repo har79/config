@@ -22,7 +22,7 @@
     "*.{c,sc,sa}ss"
   ],
   "scripts": {
-    "clean": "rm -r coverage build oss-attribution *.tsbuildinfo ||:",
+    "clean": "rm -r build coverage dist lib oss-attribution *.tsbuildinfo ||:",
     "fix:format": "prettier --write .",
     "fix:lint": "eslint --fix .",
     "fix": "npm run fix:format && npm run fix:lint",
