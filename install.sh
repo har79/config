@@ -1,10 +1,9 @@
 #!/bin/bash
 set -eu
 
-  declare -r self="$(realpath "$0")"
-  declare -r root="$(dirname "${self}")/"
-  declare -r relative="${root#"${PWD}/"}"
-
+declare -r self="$(realpath "$0")"
+declare -r root="$(dirname "${self}")/"
+declare -r relative="${root#"${PWD}/"}"
 
 function print_usage() {
   echo "Usage: npx har79-config [OPT].. [PATTERN].." >&2
@@ -108,7 +107,10 @@ function main() {
 
   add_names "${patterns[@]}"
 
-  ( cd "${root}"; "${cmd[@]}" ) | LC_ALL=C sort | while read file; do
+  (
+    cd "${root}"
+    "${cmd[@]}"
+  ) | LC_ALL=C sort | while read file; do
     file="${file#./}"
     case $file in
       options.config.js)
