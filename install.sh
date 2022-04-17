@@ -69,9 +69,9 @@ function main() {
   declare exclude=(
     "$(basename "${self}")"
     ".git/*"
+    "dist/*"
     "lib/*"
     "node_modules/*"
-    "src/*"
     "common.config.js"
     "ignore"
     "package.json"
@@ -113,6 +113,8 @@ function main() {
     file="${file#./}"
     case $file in
       .docker/*) ;&
+      src/*) ;&
+      test/*) ;&
       options.config.js)
         copy "${file}"
         ;;
