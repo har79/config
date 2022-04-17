@@ -1,6 +1,11 @@
 const ts = require('./tsconfig.json')
 const build = require('./tsconfig.build.json')
-const options = require('../../options.config')
+let options
+try {
+  options = require('../../options.config')
+} catch (_) {
+  options = require('./options.config')
+}
 
 module.exports = {
   withPreact: options.withPreact,

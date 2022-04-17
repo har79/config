@@ -17,6 +17,13 @@
   ],
   "bin": "install",
   "scripts": {
+    "fix:format": "prettier --write .",
+    "fix": "npm run fix:format",
+    "preversion": "npm run fix",
     "postversion": "git push && git push --tags"
+  },
+  "devDependencies": {
+    "prettier": "^2.6.2",
+    "prettier-plugin-jsdoc": "^0.3.38"
   }
 }
