@@ -62,6 +62,7 @@ packages=(
 @babel/plugin-transform-runtime
 @babel/preset-env
 @babel/preset-typescript
+@types/jest
 @typescript-eslint/eslint-plugin
 babel-loader
 babel-plugin-module-resolver
