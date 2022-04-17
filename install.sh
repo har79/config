@@ -7,7 +7,7 @@ function print_usage() {
 
 function print_help() {
   print_usage
-  cat >&2 <<END
+  cat >&2 << END
 
 OPT
   -d    Debug; prints all subcommands.
@@ -38,7 +38,7 @@ while getopts ":dfhn" o; do
       ;;
   esac
 done
-shift $((OPTIND-1))
+shift $((OPTIND - 1))
 
 function run() {
   ${DRY_RUN:+echo} $@ || :
@@ -56,7 +56,7 @@ function main() {
   declare -r self="$(realpath "$0")"
   declare -r dir="$(dirname "${self}")"
 
-  declare -r patterns=( "${@:-"*"}" )
+  declare -r patterns=("${@:-"*"}")
   declare -r exclude=(
     "$(basename "${self}")"
     "ignore"
@@ -69,18 +69,18 @@ function main() {
   declare cmd=()
 
   function add_names() {
-    cmd+=( \( -false )
+    cmd+=(\( -false)
     for name in "$@"; do
       cmd+=(-or -name "*${name}*")
     done
-    cmd+=( \) )
+    cmd+=(\))
   }
 
   cmd+=(
     find "${dir}"
-        -maxdepth 1
-        -not -type d
-        -not ) 
+    -maxdepth 1
+    -not -type d
+    -not)
 
   add_names "${exclude[@]}"
 
