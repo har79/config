@@ -68,7 +68,6 @@ function main() {
   declare -r patterns=("${@:-"*"}")
   declare exclude=(
     "$(basename "${self}")"
-    ".docker/*"
     ".git/*"
     "lib/*"
     "node_modules/*"
@@ -113,6 +112,7 @@ function main() {
   ) | LC_ALL=C sort | while read file; do
     file="${file#./}"
     case $file in
+      .docker/*) ;&
       options.config.js)
         copy "${file}"
         ;;
