@@ -1,3 +1,3 @@
 module.exports = {
-  withPreact: true,
+  withPreact: false,
 }
