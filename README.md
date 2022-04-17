@@ -25,7 +25,9 @@ Update your `package.json` to contain the following:
   ],
   "main": "build/src/index",
   "types": "build/src/index.d.ts",
-  "sideEffects": false,
+  "sideEffects": [
+    "*.{c,sc,sa}ss"
+  ],
   "scripts": {
     "clean": "rm -r coverage build oss-attribution *.tsbuildinfo ||:",
     "fix:format": "prettier --write .",
@@ -63,6 +65,7 @@ packages=(
 @typescript-eslint/eslint-plugin
 babel-loader
 babel-plugin-module-resolver
+css-loader
 css-minimizer-webpack-plugin
 eslint-config-google
 eslint-config-prettier
@@ -75,6 +78,8 @@ mini-css-extract-plugin
 oss-attribution-generator
 prettier-plugin-jsdoc
 prettier
+sass
+sass-loader
 typescript
 webpack-cli
 webpack-dev-server
