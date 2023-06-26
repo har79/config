@@ -48,18 +48,18 @@ function run() {
   ${DRY_RUN:+echo} $@ || :
 }
 
-function mkdir() {
+function newdir() {
   declare -r dir="$(dirname $1)"
   [[ -d "${dir}" ]] || run mkdir -p "${dir}"
 }
 
 function copy() {
-  mkdir "$1"
+  newdir "$1"
   run cp ${FORCE:--n} "${relative}$1" "${2:-$(dirname "$1")}"
 }
 
 function link() {
-  mkdir "$1"
+  newdir "$1"
   run ln -s ${FORCE:-} "${relative}$1" "${2:-$(dirname "$1")}"
 
 }
