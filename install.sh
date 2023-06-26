@@ -128,7 +128,7 @@ function main() {
   for ignore in "${ignores[@]}"; do
     for pattern in "${patterns[@]}"; do
       if [[ "${ignore}" == ${pattern} ]]; then
-        link ".npmignore" "${ignore}"
+        copy ".npmignore" "${ignore}"
         break
       fi
     done
