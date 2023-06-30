@@ -1,6 +1,6 @@
-const common = require('./common.config')
+import common from './common.config.cjs'
 
-module.exports = {
+export default {
   presets: [
     ['@babel/env', {modules: 'auto'}],
     ['@babel/typescript', {jsxPragma: 'h'}],

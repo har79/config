@@ -1,9 +1,9 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const common = require('./common.config')
+import path from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import common from './common.config.cjs'
 
-module.exports = {
+export default {
   context: path.resolve(process.cwd(), 'src'),
   entry: common.withPreact ? 'bootstrap.tsx' : 'index.ts',
   mode: 'none',

@@ -1,10 +1,10 @@
-const common = require('./common.config')
+import common from './common.config.cjs'
 
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 
-module.exports = {
+export default {
   input: 'src/index.ts',
   plugins: [
     resolve({

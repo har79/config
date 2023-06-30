@@ -1,4 +1,4 @@
-const common = require('./common.config')
+const common = require('./common.config.cjs')
 
 module.exports = {
   env: {

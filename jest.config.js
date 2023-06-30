@@ -1,6 +1,6 @@
-const common = require('./common.config')
+import common from './common.config.cjs'
 
-module.exports = {
+export default {
   moduleFileExtensions: common.extensions.map(s => s.substring(1)),
   moduleDirectories: common.modules,
   collectCoverageFrom: [`${common.src}/**`],
