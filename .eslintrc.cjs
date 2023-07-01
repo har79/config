@@ -8,11 +8,11 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    ...(common.withPreact ? ['preact'] : []),
+    ...(common.withReact ? ['next/core-web-vitals'] : []),
     'google',
     'prettier',
   ],
-  plugins: [...(common.withPreact ? ['react'] : []), '@typescript-eslint'],
+  plugins: [...(common.withNext ? ['react'] : []), '@typescript-eslint'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -38,7 +38,7 @@ module.exports = {
       ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        ecmaFeatures: {jsx: common.withPreact},
+        ecmaFeatures: {jsx: common.withNext},
         ecmaVersion: 2018,
         project: `${common.configPath}/tsconfig.json`,
         sourceType: 'module',

@@ -1,39 +1,42 @@
 {
-  "include": ["src/**/*", "test/**/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "downlevelIteration": true,
     "importHelpers": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": ["dom"],
+    "jsx": "preserve",
     "module": "esnext",
     "noEmit": true,
     "outDir": "lib",
     "sourceMap": true,
     "target": "esnext",
-
     "strict": true,
-
     "baseUrl": ".",
     "esModuleInterop": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
-      "react": ["node_modules/preact/compat"],
-      "react-dom": ["node_modules/preact/compat"]
+      "@/*": ["./src/*"]
     },
-
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "forceConsistentCasingInFileNames": true,
     "jsxFactory": "h",
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true
   }
 }
