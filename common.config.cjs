@@ -3,8 +3,8 @@ const build = require('./tsconfig.build.json')
 let options
 let configPath
 try {
-  options = require('../mallet/options.config.cjs')
-  configPath = '../mallet'
+  options = require('../../options.config.cjs')
+  configPath = '../..'
 } catch (_) {
   options = require('./options.config.cjs')
   configPath = '.'
