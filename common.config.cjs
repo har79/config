@@ -3,8 +3,8 @@ const build = require('./tsconfig.build.json')
 let options
 let configPath
 try {
-  options = require('../mallet/options.config.cjs')
-  configPath = '../mallet'
+  options = require('../../options.config.cjs')
+  configPath = '../..'
 } catch (_) {
   options = require('./options.config.cjs')
   configPath = '.'
@@ -12,10 +12,10 @@ try {
 
 module.exports = {
   configPath: configPath,
-  withReact: options.withReact,
+  withPreact: options.withPreact,
 
   alias: ts.compilerOptions.paths,
-  extensions: ['.ts', ...(options.withReact ? ['.tsx'] : []), '.js'],
+  extensions: ['.ts', ...(options.withPreact ? ['.tsx'] : []), '.js'],
   modules: [ts.compilerOptions.baseUrl, 'node_modules'],
   out: ts.compilerOptions.outDir,
   src: build.compilerOptions.rootDir,

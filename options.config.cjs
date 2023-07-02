@@ -1,3 +1,3 @@
 module.exports = {
-  withReact: false,
+  withPreact: false,
 }
