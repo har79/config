@@ -5,7 +5,7 @@ import common from './common.config.cjs'
 
 export default {
   context: path.resolve(process.cwd(), 'src'),
-  entry: common.withPreact ? 'bootstrap.tsx' : 'index.ts',
+  entry: common.withReact ? 'index.tsx' : 'index.ts',
   mode: 'none',
   output: {
     filename: 'app.js',

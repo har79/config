@@ -18,10 +18,6 @@
     "baseUrl": ".",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "paths": {
-      "react": ["node_modules/preact/compat"],
-      "react-dom": ["node_modules/preact/compat"]
-    },
 
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,

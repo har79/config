@@ -4,12 +4,12 @@ module.exports = {
   presets: [
     ['@babel/env', {modules: 'auto'}],
     ['@babel/typescript', {jsxPragma: 'h'}],
-    ...(common.withPreact ? ['@babel/react'] : []),
+    ...(common.withReact ? ['@babel/react'] : []),
   ],
   plugins: [
     '@babel/proposal-class-properties',
     '@babel/proposal-object-rest-spread',
-    ...(common.withPreact
+    ...(common.withReact
       ? [['@babel/transform-react-jsx', {pragma: 'h'}]]
       : []),
     '@babel/transform-runtime',

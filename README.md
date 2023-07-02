@@ -89,14 +89,17 @@ webpack
 for p in "${packages[@]}"; do npm i -D "$p"; done
 ```
 
-### `withPreact`
+### `withReact`
 
 ```
 packages=(
 @babel/plugin-transform-react-jsx
 @babel/preset-react
-eslint-config-preact
-preact
+@types/react
+@types/react-dom
+eslint-config-react
+react
+react-dom
 )
 for p in "${packages[@]}"; do npm i -D "$p"; done
 ```
