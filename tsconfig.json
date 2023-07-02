@@ -27,7 +27,6 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "forceConsistentCasingInFileNames": true,
-    "jsxFactory": "h",
     "noEmitOnError": true,
     "skipLibCheck": true,
     "useDefineForClassFields": true
