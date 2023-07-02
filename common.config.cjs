@@ -15,7 +15,6 @@ module.exports = {
   configPath: configPath,
   withReact: options.withReact,
 
-  alias: ts.compilerOptions.paths,
   extensions: ['.ts', ...(options.withReact ? ['.tsx'] : []), '.js'],
   modules: [ts.compilerOptions.baseUrl, 'node_modules'],
   out: ts.compilerOptions.outDir,

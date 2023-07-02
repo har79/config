@@ -25,9 +25,6 @@ export default {
     ],
   },
   resolve: {
-    alias: Object.fromEntries(
-      Object.entries(common.alias).map(([k, v]) => [k, v[0]])
-    ),
     extensions: common.extensions,
     modules: common.modules,
   },
