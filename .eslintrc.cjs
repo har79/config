@@ -8,7 +8,7 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    ...(common.withReact ? ['react'] : []),
+    ...(common.withReact ? ['plugin:react/recommended'] : []),
     'google',
     'prettier',
   ],
