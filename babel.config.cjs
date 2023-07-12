@@ -11,6 +11,7 @@ module.exports = {
     '@babel/proposal-object-rest-spread',
     ...(common.withReact ? [['@babel/transform-react-jsx']] : []),
     '@babel/transform-runtime',
+    ...common(common.withLodash ? ['lodash'] : []),
     [
       'module-resolver',
       {
