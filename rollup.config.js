@@ -1,8 +1,8 @@
-import common from './common.config.cjs'
-
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
+
+import common from './common.config.cjs'
 
 export default {
   input: 'src/index.ts',
