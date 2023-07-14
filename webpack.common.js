@@ -12,6 +12,7 @@ export default {
   output: {
     filename: 'app.js',
     path: path.resolve(process.cwd(), 'dist'),
+    publicPath: '/',
   },
   module: {
     rules: [
