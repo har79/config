@@ -6,7 +6,6 @@
     "importHelpers": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["dom"],
     "module": "esnext",
     "noEmit": true,
     "outDir": "lib",
