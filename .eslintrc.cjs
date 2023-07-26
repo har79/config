@@ -12,7 +12,7 @@ module.exports = {
     'google',
     'prettier',
   ],
-  plugins: [...(common.withReact ? ['react'] : []), '@typescript-eslint'],
+  plugins: [...(common.withReact ? ['react'] : []), '@typescript-eslint', 'unused-imports'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -29,6 +29,9 @@ module.exports = {
     'valid-jsdoc': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'no-unuseds-vars': 'off',
+    'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-vars': 'warn',
   },
   settings: {
     react: {
