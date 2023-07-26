@@ -54,6 +54,10 @@ module.exports = {
         sourceType: 'module',
         tsconfigRootDir: __dirname,
       },
+      rules: {
+        // Redundant with @typescript-eslint/no-unused-vars
+        'unused-imports/no-unused-vars': 'off',
+      },
     },
   ],
 }
