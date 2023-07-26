@@ -27,6 +27,8 @@ module.exports = {
     'no-invalid-this': 'off',
     'require-jsdoc': 'off',
     'valid-jsdoc': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
   overrides: [
     {
