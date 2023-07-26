@@ -4,7 +4,7 @@ module.exports = {
   presets: [
     ['@babel/env', {modules: 'auto'}],
     ['@babel/typescript'],
-    ...(common.withReact ? ['@babel/react'] : []),
+    ...(common.withReact ? [['@babel/react', {runtime: 'automatic'}]] : []),
   ],
   plugins: [
     '@babel/proposal-class-properties',
