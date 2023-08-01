@@ -25,6 +25,7 @@ module.exports = {
     eqeqeq: ['error', 'always'],
     'no-constant-condition': ['error', {checkLoops: false}],
     'no-invalid-this': 'off',
+    'no-multi-str': 'off',
     'require-jsdoc': 'off',
     'valid-jsdoc': 'off',
     'react/jsx-uses-react': 'off',
