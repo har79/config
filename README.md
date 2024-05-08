@@ -70,7 +70,9 @@ css-loader
 css-minimizer-webpack-plugin
 eslint-config-google
 eslint-config-prettier
+eslint-plugin-unused-imports
 eslint
+@eslint/js
 har79-config
 html-webpack-plugin
 jest
@@ -78,6 +80,8 @@ license-checker
 mini-css-extract-plugin
 oss-attribution-generator
 prettier-plugin-jsdoc
+prettier-plugin-sh
+@ianvs/prettier-plugin-sort-imports
 prettier
 sass
 sass-loader
