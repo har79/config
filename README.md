@@ -2,6 +2,13 @@
 
 Common config boilerplate.
 
+## TODO
+
+- stylelint
+- conditional TS
+- conditional scss
+- add npm-check-updates
+
 ## Install
 
 `npm i -D har79/config`
@@ -32,7 +39,8 @@ Update your `package.json` to contain the following:
     "clean": "rm -r coverage build oss-attribution *.tsbuildinfo ||:",
     "fix:format": "prettier --write .",
     "fix:lint": "eslint --fix .",
-    "fix": "npm run fix:format && npm run fix:lint",
+    "fix:style": "stylelint '**/*.scss'",
+    "fix": "npm run fix:format && npm run fix:lint && npm run fix:style",
     "license:check": "license-checker --production --onlyAllow 'MIT;ISC;Apache-2.0'",
     "license:attribution": "generate-attribution",
     "license": "npm run license:check && npm run license:attribution",
@@ -85,6 +93,8 @@ prettier-plugin-sh
 prettier
 sass
 sass-loader
+stylelint
+stylelint-config-standard-scss
 typescript
 webpack-cli
 webpack-dev-server
