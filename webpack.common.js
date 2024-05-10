@@ -23,7 +23,24 @@ export default {
       },
       {
         test: /\.(c|sa|sc)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              sassOptions: {
+                includePaths: ['node_modules'],
+              },
+            },
+          },
+        ],
       },
     ],
   },
