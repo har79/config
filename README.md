@@ -4,10 +4,8 @@ Common config boilerplate.
 
 ## TODO
 
-- stylelint
 - conditional TS
 - conditional scss
-- add npm-check-updates
 
 ## Install
 
@@ -58,6 +56,7 @@ Update your `package.json` to contain the following:
     "postversion": "git push && git push --tags",
     "prepare": "npm run clean && npm run license:check && npm run build",
     "start": "webpack-dev-server --config webpack.dev.js"
+    "updates": "npm-check-updates"
   },
 ```
 
@@ -86,6 +85,7 @@ html-webpack-plugin
 jest
 license-checker
 mini-css-extract-plugin
+npm-check-updates
 oss-attribution-generator
 prettier-plugin-jsdoc
 prettier-plugin-sh
