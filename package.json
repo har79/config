@@ -1,5 +1,5 @@
 {
-  "name": "har79-config",
+  "name": "@har79/config",
   "version": "5.11.0",
   "description": "Common config boilerplate.",
   "license": "Unlicense",
