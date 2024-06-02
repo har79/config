@@ -4,8 +4,8 @@ const build = require('./tsconfig.build.json')
 let options
 let configPath
 try {
-  options = require('../../options.config.cjs')
-  configPath = '../..'
+  options = require('../../../options.config.cjs')
+  configPath = '../../..'
 } catch (_) {
   options = require('./options.config.cjs')
   configPath = '.'
