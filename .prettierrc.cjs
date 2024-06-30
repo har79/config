@@ -4,7 +4,7 @@ module.exports = {
   arrowParens: 'avoid',
   bracketSpacing: false,
   plugins: [
-    ...(common.useGoTemplate ? ['prettier-plugin-go-template'], []),
+    ...(common.useGoTemplate ? ['prettier-plugin-go-template'] : []),
     'prettier-plugin-jsdoc',
     'prettier-plugin-sh',
     '@ianvs/prettier-plugin-sort-imports',
@@ -33,8 +33,8 @@ module.exports = {
     ...(common.useGoTemplate ? [{
       files: '*.html',
       options: {
-        parse: 'go-template',
+        parser: 'go-template',
       },
-    }], [])
+    }]: []),
   ],
 }
