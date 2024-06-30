@@ -1,7 +1,6 @@
 syntax: glob
 
 /build/
-/lib/
 /oss-attribution/
 /public/
 
