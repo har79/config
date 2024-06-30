@@ -3,10 +3,14 @@ syntax: glob
 /build/
 /lib/
 /oss-attribution/
+/public/
 
 # Editors
 *.code-workspace
 *.orig
+
+# Hugo
+.hugo_build.lock
 
 # Hexo
 db.json

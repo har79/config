@@ -19,4 +19,5 @@ module.exports = {
   modules: [ts.compilerOptions.baseUrl, 'node_modules'],
   out: ts.compilerOptions.outDir,
   src: build.compilerOptions.rootDir,
+  useGoTemplate: options.useGoTemplate,
 }

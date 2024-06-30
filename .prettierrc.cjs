@@ -1,7 +1,14 @@
+const common = require('./common.config.cjs')
+
 module.exports = {
   arrowParens: 'avoid',
   bracketSpacing: false,
-  plugins: ['prettier-plugin-jsdoc', 'prettier-plugin-sh', '@ianvs/prettier-plugin-sort-imports'],
+  plugins: [
+    ...(common.useGoTemplate ? ['prettier-plugin-go-template'], []),
+    'prettier-plugin-jsdoc',
+    'prettier-plugin-sh',
+    '@ianvs/prettier-plugin-sort-imports',
+  ],
   importOrder: [
     'react',
     '<THIRD_PARTY_MODULES>',
@@ -23,5 +30,11 @@ module.exports = {
         parser: 'jsdoc-parser',
       },
     },
+    ...(common.useGoTemplate ? [{
+      files: '*.html',
+      options: {
+        parse: 'go-template',
+      },
+    }], [])
   ],
 }
