@@ -9,7 +9,7 @@ Common config boilerplate.
 
 ## Install
 
-`npm i -D har79/config`
+`npm i -D @har79/config`
 
 ## Command
 
