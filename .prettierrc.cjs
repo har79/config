@@ -30,11 +30,15 @@ module.exports = {
         parser: 'jsdoc-parser',
       },
     },
-    ...(common.useGoTemplate ? [{
-      files: '*.html',
-      options: {
-        parser: 'go-template',
-      },
-    }]: []),
+    ...(common.useGoTemplate
+      ? [
+          {
+            files: '*.html',
+            options: {
+              parser: 'go-template',
+            },
+          },
+        ]
+      : []),
   ],
 }
