@@ -73,7 +73,7 @@ function main() {
     "lib/*"
     "node_modules/*"
     ".npmignore"
-    "common.config.js"
+    "common.config.cjs"
     "ignore"
     "package.json"
     "package-lock.json"
@@ -129,7 +129,7 @@ function main() {
   for ignore in "${ignores[@]}"; do
     for pattern in "${patterns[@]}"; do
       if [[ "${ignore}" == ${pattern} ]]; then
-        copy ".npmignore" "${ignore}"
+        copy "${ignore}"
         break
       fi
     done
