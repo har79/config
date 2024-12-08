@@ -77,6 +77,7 @@ function main() {
     "ignore"
     "package.json"
     "package-lock.json"
+    "pnpm-lock.yaml"
     "LICENSE"
     "README.md"
   )
