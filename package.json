@@ -41,7 +41,7 @@
     "test:watch": "jest --coverage --watchAll",
     "test": "npm run test:watch",
     "update": "npm-check-updates --peer -u && npm update",
-    "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once",
+    "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once && [ -z \"$(git status --porcelain)\" ]",
     "postversion": "git push && git push --tags",
     "prepare": "npm run clean && npm run license:check && npm run build",
     "start": "webpack-dev-server --config webpack.dev.babel.js"
