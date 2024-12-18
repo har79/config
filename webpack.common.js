@@ -37,7 +37,7 @@ export default {
               sourceMap: true,
               api: 'modern',
               sassOptions: {
-                includePaths: ['node_modules'],
+                loadPaths: ['node_modules'],
               },
             },
           },
