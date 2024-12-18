@@ -35,6 +35,7 @@ export default {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
+              api: 'modern',
               sassOptions: {
                 includePaths: ['node_modules'],
               },
