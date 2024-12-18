@@ -14,6 +14,10 @@ while (options === undefined) {
     break
   }
 }
+if (options === undefined) {
+  configPath = '.'
+  options = require(`${configPath}/options.config.cjs`)
+}
 
 module.exports = {
   configPath,
