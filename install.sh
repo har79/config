@@ -71,7 +71,6 @@ function main() {
     "dist/*"
     "lib/*"
     "node_modules/*"
-    ".npmignore"
     "common.config.cjs"
     "ignore"
     "package.json"
