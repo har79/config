@@ -9,7 +9,7 @@ Common config boilerplate.
 
 ## Install
 
-`npm i -D @har79/config`
+`pnpm i -D @har79/config`
 
 ## Command
 
@@ -42,6 +42,7 @@ Update your `package.json` to contain the following:
     "license:check": "license-checker --production --onlyAllow 'MIT;ISC;Apache-2.0' --excludePrivatePackages",
     "license:attribution": "generate-attribution",
     "license": "npm run license:check && npm run license:attribution",
+    "postinstall": "typesync && pnpm install --ignore-scripts",
     "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once && [ -z \"$(git status --porcelain)\" ]",
     "postversion": "git push && git push --tags",
     "prepare": "npm run clean && npm run license:check && npm run build",
@@ -95,6 +96,7 @@ stylelint
 stylelint-config-standard-scss
 typescript
 typescript-eslint
+typesync
 webpack-cli
 webpack-dev-server
 webpack
