@@ -1,18 +1,22 @@
+const path = require('path')
+
 const ts = require('./tsconfig.json')
 const build = require('./tsconfig.build.json')
 
 let options
-let configPath
-try {
-  options = require('../../../options.config.cjs')
-  configPath = '../../..'
-} catch (_) {
-  options = require('./options.config.cjs')
-  configPath = '.'
+let configPath = path.dirname(__filename)
+while (options === undefined) {
+  configPath = path.dirname(configPath)
+  try {
+    options = require(`${configPath}/options.config.cjs`)
+  } catch (_) {}
+  if (configPath === '/') {
+    break
+  }
 }
 
 module.exports = {
-  configPath: configPath,
+  configPath,
   withReact: options.withReact,
 
   extensions: ['.ts', ...(options.withReact ? ['.tsx'] : []), '.js'],
