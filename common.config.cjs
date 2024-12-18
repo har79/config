@@ -9,7 +9,7 @@ while (options === undefined) {
   configPath = path.dirname(configPath)
   try {
     options = require(`${configPath}/options.config.cjs`)
-  } catch (_) {}
+  } catch (_) {} // eslint-disable-line no-unused-vars, no-empty
   if (configPath === '/') {
     break
   }
