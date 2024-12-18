@@ -81,9 +81,7 @@ function main() {
     "README.md"
   )
   declare -r copies=(
-    ".eslintignore"
     ".gitignore"
-    ".hgignore"
   )
   exclude+=("${copies[@]}")
 
