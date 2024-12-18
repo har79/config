@@ -3,7 +3,7 @@ set -eu
 
 declare -r self="$(realpath "$0")"
 declare -r root="$(dirname "${self}")/"
-declare -r relative="node_modules/@har79/config"
+declare -r relative="node_modules/@har79/config/"
 
 function print_usage() {
   echo "Usage: npx har79-config [OPT].. [PATTERN].." >&2
