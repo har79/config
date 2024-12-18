@@ -3,7 +3,7 @@ set -eu
 
 declare -r self="$(realpath "$0")"
 declare -r root="$(dirname "${self}")/"
-declare -r relative="${root#"${PWD}/"}"
+declare -r relative="node_modules/@har79/config"
 
 function print_usage() {
   echo "Usage: npx har79-config [OPT].. [PATTERN].." >&2
@@ -61,7 +61,6 @@ function copy() {
 function link() {
   newdir "$1"
   run ln -s ${FORCE:-} "${relative}$1" "${2:-$(dirname "$1")}"
-
 }
 
 function main() {
@@ -81,13 +80,12 @@ function main() {
     "LICENSE"
     "README.md"
   )
-  declare -r ignores=(
+  declare -r copies=(
     ".eslintignore"
     ".gitignore"
     ".hgignore"
-    ".prettierignore"
   )
-  exclude+=("${ignores[@]}")
+  exclude+=("${copies[@]}")
 
   declare cmd=()
 
@@ -126,7 +124,7 @@ function main() {
     esac
   done
 
-  for ignore in "${ignores[@]}"; do
+  for ignore in "${copies[@]}"; do
     for pattern in "${patterns[@]}"; do
       if [[ "${ignore}" == ${pattern} ]]; then
         copy "${ignore}"
