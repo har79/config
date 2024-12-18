@@ -34,17 +34,20 @@ Update your `package.json` to contain the following:
     "*.{c,sc,sa}ss"
   ],
   "scripts": {
-    "clean": "rm -r coverage build oss-attribution *.tsbuildinfo ||:",
+    "clean": "rm -r coverage build dist lib oss-attribution *.tsbuildinfo ||:",
     "fix:format": "prettier --write .",
     "fix:lint": "eslint --fix .",
     "fix:style": "stylelint '**/*.scss'",
-    "fix": "npm run fix:format && npm run fix:lint && npm run fix:style",
-    "license:check": "license-checker --production --onlyAllow 'MIT;ISC;Apache-2.0'",
+    "fix": "npm run fix:lint && npm run fix:style && npm run fix:format",
+    "license:check": "license-checker --production --onlyAllow 'MIT;ISC;Apache-2.0' --excludePrivatePackages",
     "license:attribution": "generate-attribution",
     "license": "npm run license:check && npm run license:attribution",
+    "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once && [ -z \"$(git status --porcelain)\" ]",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run clean && npm run license:check && npm run build",
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "build:js": "rollup --config",
-    "build:webpack": "webpack --config webpack.prod.js",
+    "build:webpack": "webpack --config webpack.prod.babel.js",
     "build": "npm run build:webpack",
     "type:once": "tsc",
     "type:watch": "npm run type:once -- --watch",
@@ -52,11 +55,7 @@ Update your `package.json` to contain the following:
     "test:once": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
     "test": "npm run test:watch",
-    "preversion": "npm run fix && npm run type:once && npm run test:once",
-    "postversion": "git push && git push --tags",
-    "prepare": "npm run clean && npm run license:check && npm run build",
-    "start": "webpack-dev-server --config webpack.dev.js"
-    "updates": "npm-check-updates"
+    "start": "webpack-dev-server --config webpack.dev.babel.js"
   },
 ```
 
@@ -70,7 +69,6 @@ packages=(
 @babel/preset-env
 @babel/preset-typescript
 @types/jest
-@typescript-eslint/eslint-plugin
 babel-loader
 babel-plugin-module-resolver
 css-loader
@@ -80,12 +78,12 @@ eslint-config-prettier
 eslint-plugin-unused-imports
 eslint
 @eslint/js
+globals
 har79-config
 html-webpack-plugin
 jest
 license-checker
 mini-css-extract-plugin
-npm-check-updates
 oss-attribution-generator
 prettier-plugin-jsdoc
 prettier-plugin-sh
@@ -96,6 +94,7 @@ sass-loader
 stylelint
 stylelint-config-standard-scss
 typescript
+typescript-eslint
 webpack-cli
 webpack-dev-server
 webpack

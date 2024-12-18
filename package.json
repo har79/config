@@ -30,6 +30,9 @@
     "license:check": "license-checker --production --onlyAllow 'Unlicense'",
     "license:attribution": "generate-attribution",
     "license": "npm run license:check && npm run license:attribution",
+    "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once && [ -z \"$(git status --porcelain)\" ]",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run clean && npm run license:check && npm run build",
     "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly",
     "build:js": "rollup --config",
     "build:webpack": "webpack --config webpack.prod.babel.js",
@@ -40,9 +43,6 @@
     "test:once": "jest --coverage",
     "test:watch": "jest --coverage --watchAll",
     "test": "npm run test:watch",
-    "preversion": "npm run license:check && npm run fix && npm run type:once && npm run test:once && [ -z \"$(git status --porcelain)\" ]",
-    "postversion": "git push && git push --tags",
-    "prepare": "npm run clean && npm run license:check && npm run build",
     "start": "webpack-dev-server --config webpack.dev.babel.js"
   },
   "devDependencies": {
