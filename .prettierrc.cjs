@@ -18,7 +18,7 @@ module.exports = {
     '[.]css$',
   ],
   importOrderTypeScriptVersion: '5.1.0',
-  printWidth: 100,
+  printWidth: 80,
   proseWrap: 'always',
   semi: false,
   singleQuote: true,
