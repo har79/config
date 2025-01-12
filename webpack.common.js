@@ -50,7 +50,7 @@ export default {
     modules: common.modules,
   },
   plugins: [
-    ...(common.withLodash ? new LodashModuleReplacementPlugin() : []),
+    ...(common.withLodash ? [new LodashModuleReplacementPlugin()] : []),
     new HtmlWebpackPlugin({
       title: 'mallet',
       template: 'index.html',
