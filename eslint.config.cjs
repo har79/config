@@ -56,7 +56,10 @@ module.exports = tseslint.config(
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
-    extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+    extends: [
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
     languageOptions: {
       parserOptions: {
         projectService: true,
@@ -66,6 +69,12 @@ module.exports = tseslint.config(
     rules: {
       // Redundant with @typescript-eslint/no-unused-vars
       'unused-imports/no-unused-vars': 'off',
+      '@typescript-eslint/no-unnecessary-condition': [
+        'error',
+        {
+          allowConstantLoopConditions: true,
+        },
+      ],
     },
   }
 )
