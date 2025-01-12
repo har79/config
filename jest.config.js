@@ -11,6 +11,7 @@ export default {
   // Workaround https://github.com/jestjs/jest/issues/12889.
   moduleDirectories: modules,
   collectCoverageFrom: [`${common.src}/**`],
+  coveragePathIgnorePatterns: ['/testing/'],
   coverageThreshold: {
     global: {
       statements: 100,
