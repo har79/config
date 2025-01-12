@@ -21,6 +21,7 @@ if (options === undefined) {
 
 module.exports = {
   configPath,
+  withLodash: options.withLodash,
   withReact: options.withReact,
 
   extensions: ['.ts', ...(options.withReact ? ['.tsx'] : []), '.js'],
