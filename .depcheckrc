@@ -1,9 +1,13 @@
 ignores: [
-  "@ianvs/prettier-plugin-sort-imports",
-  "prettier-*",
   "@babel/register",
+  "@babel/runtime",
+  "@har79/config",
+  "@ianvs/prettier-plugin-sort-imports",
+  "@types/jest",
   "babel-loader",
   "css-loader",
+  "eslint-plugin-react",
+  "prettier-*",
   "sass-loader",
-  "eslint-plugin-react"
+  "src"
 ]
