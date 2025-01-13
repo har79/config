@@ -52,9 +52,6 @@ export default {
     ],
   },
   resolve: {
-    alias: {
-      lodash: 'lodash-es',
-    },
     extensions: common.extensions,
     modules: common.modules,
   },
