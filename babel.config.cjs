@@ -8,7 +8,6 @@ module.exports = {
   ],
   plugins: [
     '@babel/transform-runtime',
-    ...(common.withLodash ? ['lodash'] : []),
     [
       'module-resolver',
       {

@@ -1,6 +1,5 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import LodashModuleReplacementPlugin from 'lodash-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 import common from './common.config.cjs'
@@ -56,7 +55,6 @@ export default {
     modules: common.modules,
   },
   plugins: [
-    ...(common.withLodash ? [new LodashModuleReplacementPlugin()] : []),
     new HtmlWebpackPlugin({
       title: 'mallet',
       template: 'index.html',
