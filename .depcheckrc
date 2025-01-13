@@ -1,1 +1,9 @@
-ignores: []
+ignores: [
+  "@ianvs/prettier-plugin-sort-imports",
+  "prettier-*",
+  "@babel/register",
+  "babel-loader",
+  "css-loader",
+  "sass-loader",
+  "eslint-plugin-react"
+]
