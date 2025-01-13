@@ -1,6 +1,8 @@
 syntax: glob
 
 /build/
+/dist/
+/lib/
 /oss-attribution/
 /public/
 
@@ -96,7 +98,6 @@ typings/
 
 # Nuxt.js build / generate output
 .nuxt
-dist
 
 # Gatsby files
 .cache/
