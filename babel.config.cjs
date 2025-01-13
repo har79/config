@@ -7,8 +7,6 @@ module.exports = {
     ...(common.withReact ? [['@babel/react', {runtime: 'automatic'}]] : []),
   ],
   plugins: [
-    '@babel/proposal-class-properties',
-    '@babel/proposal-object-rest-spread',
     '@babel/transform-runtime',
     ...(common.withLodash ? ['lodash'] : []),
     [
