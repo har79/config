@@ -17,6 +17,12 @@ export default {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+      {
         test: /\.tsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
@@ -46,6 +52,9 @@ export default {
     ],
   },
   resolve: {
+    alias: {
+      lodash: 'lodash-es',
+    },
     extensions: common.extensions,
     modules: common.modules,
   },
