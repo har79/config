@@ -9,5 +9,6 @@ ignores: [
   "eslint-plugin-react",
   "prettier-*",
   "sass-loader",
-  "src"
+  "src",
+  "stylelint-config-standard-scss"
 ]
