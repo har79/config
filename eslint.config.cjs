@@ -75,6 +75,12 @@ module.exports = tseslint.config(
           allowConstantLoopConditions: true,
         },
       ],
+      '@typescript-eslint/restrict-template-expressions': [
+        'error',
+        {
+          allowNumber: true,
+        },
+      ],
     },
   }
 )
