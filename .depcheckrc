@@ -10,5 +10,6 @@ ignores: [
   "prettier-*",
   "sass-loader",
   "src",
-  "stylelint-config-standard-scss"
+  "stylelint-config-standard-scss",
+  "webpack-cli"
 ]
