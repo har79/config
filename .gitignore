@@ -10,6 +10,9 @@ syntax: glob
 *.code-workspace
 *.orig
 
+# Windows
+*:Zone.Identifier
+
 # Hugo
 .hugo_build.lock
 
